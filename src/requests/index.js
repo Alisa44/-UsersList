@@ -6,7 +6,6 @@ export const getAllUsers = () => {
         url: ALL_USERS,
         method: 'get',
         headers: { 'content-type': 'application/json' },
-        withCredentials: true,
     });
 };
 
@@ -15,7 +14,6 @@ export const createUser = data => {
         url: ALL_USERS,
         method: 'post',
         headers: { 'content-type': 'application/json' },
-        withCredentials: true,
         data
     });
 };
@@ -25,16 +23,14 @@ export const updateUser = (id, data) => {
         url: `${ONE_USER}/id`,
         method: 'put',
         headers: { 'content-type': 'application/json' },
-        withCredentials: true,
         data
     });
 };
 
-export const deleteUser = id => {
+export const deleteUserById = id => {
     return axios({
-        url: `${ONE_USER}/id`,
+        url: `${ONE_USER}/${id}`,
         method: 'delete',
         headers: { 'content-type': 'application/json' },
-        withCredentials: true,
     });
 };

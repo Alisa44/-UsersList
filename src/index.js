@@ -5,12 +5,13 @@ import { Router } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { store } from './store';
+import { history } from './history';
 import './index.css';
 
 ReactDOM.render(
     <React.StrictMode>
     <Provider store={store}>
-        <Router>
+        <Router history={history}>
             <App />
         </Router>
     </Provider>

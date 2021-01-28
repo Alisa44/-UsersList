@@ -1,0 +1,18 @@
+.headerWrapper {
+  height: 70px;
+  position: sticky;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 24px;
+  text-decoration: underline;
+  background-color: #f1f1fa;
+}
+
+.linksWrapper {
+  color: #282c34;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 10px 24px;
+}
