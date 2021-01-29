@@ -4,7 +4,7 @@ import { getUsers } from '../../store/actions/actions';
 import UsersTable from '../../components/UsersTable/UsersTable';
 import styles from './Home.module.scss';
 import NewUserPopup from '../../components/NewUserPopup/NewUserPopup';
-import ButtonBlock from '../../components/ButtonsBlock/ButtonsBlock';
+import ButtonBlock from '../../components/ButtonBlock/ButtonBlock';
 
 const Home = () => {
     const [isNewUserOpen, setNewUserOpen] = useState(false);

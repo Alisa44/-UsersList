@@ -1,8 +1,12 @@
 import React, {useCallback} from 'react';
 import UserForm from '../UserForm/UserForm';
 import {Modal} from 'antd';
+import {useDispatch} from 'react-redux';
+import {createNewUser} from '../../store/actions/actions';
 
 const NewUserPopup = ({ isOpen, handleCancel }) => {
+    const dispatch = useDispatch();
+    
     const initialValues = {
         firstName: '',
         lastName: '',
@@ -11,9 +15,10 @@ const NewUserPopup = ({ isOpen, handleCancel }) => {
     };
 
     const onSubmit = useCallback((values) => {
-        console.log(values);
-        handleCancel();
-    }, [handleCancel]);
+        const { firstName: name, lastName: surname, description: desc, avatarLink: avatar } = values;
+        const data = {name, surname, desc, avatar};
+        dispatch(createNewUser(data, () => handleCancel()));
+    }, [handleCancel, dispatch]);
 
     return <Modal destroyOnClose
                   onCancel={handleCancel}

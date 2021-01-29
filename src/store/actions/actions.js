@@ -1,4 +1,4 @@
-import { deleteUserById, getAllUsers, updateUser } from '../../requests';
+import {createUser, deleteUserById, getAllUsers, updateUser} from '../../requests';
 import { ACTIONS } from './types';
 
 export const setUsers = data => ({
@@ -17,10 +17,13 @@ export const getUsers = () => dispatch => {
     });
 };
 
-export const createUser = data => dispatch => {
+export const createNewUser = (data, callback)=> dispatch => {
     createUser(data)
         .then(res => {
-            dispatch(getAllUsers());
+            if (res.status === 200 && res.data) {
+                callback();
+                dispatch(getUsers());
+            }
         }).catch(err => {
         console.log('create user error happened', err);
     });

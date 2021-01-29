@@ -58,7 +58,7 @@ const UserForm = ({ initialValues, isEdit, onSubmit, onCancel }) => {
                               label='Link To Avatar'
                               onChange={handleChange}
                               onBlur={handleBlur}
-                              placeholder='Description'
+                              placeholder='Link To Avatar'
                               errors={errors}
                               touched={touched}
                               isEdit={isEdit}/>
