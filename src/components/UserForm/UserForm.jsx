@@ -1,63 +1,77 @@
 import React from 'react';
-import {Formik} from 'formik';
+import { Formik } from 'formik';
+import {Button} from 'antd';
 
 import FormItem from '../FormItem/FormItem';
-import ButtonBlock from '../ButtonsBlock/ButtonsBlock';
-import {personValidation} from './validationScheme';
+import { personValidation } from './validationScheme';
+import styles from './UserForm.module.scss';
 
-const UserForm = ({ initialValues, isEdit, onSubmit }) => {
+const UserForm = ({ initialValues, isEdit, onSubmit, onCancel }) => {
     return <div>
         <Formik validationSchema={personValidation}
-                initialValues={initialValues} onSubmit={onSubmit}>
+                initialValues={initialValues}
+                onSubmit={onSubmit}>
             {({
                   values,
                   handleChange,
+                  handleSubmit,
                   handleBlur,
                   errors,
                   touched,
-              }) => <form>
-                <FormItem value={values.firstName}
-                           id='firstname'
-                           label='First Name'
-                           required
-                           onCnange={handleChange}
-                           onBlur={handleBlur}
-                           placeholder='Enter firstname'
-                           error={errors.firstName}
-                           touched={touched.firstName}
-                           isEdit={isEdit}/>
-                <FormItem value={values.lastname}
-                           id='lastname'
-                           onCnange={handleChange}
-                           onBlur={handleBlur}
-                           label='Last Name'
-                           required
-                           placeholder='Enter lastname'
-                           error={errors.lastname}
-                           touched={touched.lastname}
-                           isEdit={isEdit}/>
-                <FormItem value={values.description}
-                           id='description'
-                           label='Description'
-                           onCnange={handleChange}
-                           onBlur={handleBlur}
-                           placeholder='Description'
-                           error={errors.description}
-                           touched={touched.description}
-                           isEdit={isEdit}/>
-                <FormItem value={values.description}
-                           id='avatarLink'
-                           label='Link To Avatar'
-                           onCnange={handleChange}
-                           onBlur={handleBlur}
-                           placeholder='Description'
-                           error={errors.avatarLink}
-                           touched={touched.avatarLink}
-                           isEdit={isEdit}/>
-
-            </form>}
+              }) => <div>
+                <form>
+                    <FormItem values={values}
+                              id='firstName'
+                              name='firstName'
+                              label='First Name'
+                              required
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              placeholder='Enter firstname'
+                              errors={errors}
+                              touched={touched}
+                              isEdit={isEdit}/>
+                    <FormItem values={values}
+                              id='lastName'
+                              name='lastName'
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              label='Last Name'
+                              required
+                              placeholder='Enter lastname'
+                              errors={errors}
+                              touched={touched}
+                              isEdit={isEdit}/>
+                    <FormItem values={values}
+                              id='description'
+                              name='description'
+                              label='Description'
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              placeholder='Description'
+                              errors={errors}
+                              touched={touched}
+                              isEdit={isEdit}/>
+                    <FormItem values={values}
+                              id='avatarLink'
+                              name='avatarLink'
+                              label='Link To Avatar'
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              placeholder='Description'
+                              errors={errors}
+                              touched={touched}
+                              isEdit={isEdit}/>
+                </form>
+                <div className={styles.buttonsWrapper}>
+                    <Button onClick={onCancel}
+                            children='Cancel'/>
+                    <Button onClick={handleSubmit}
+                            className={styles.button}
+                            children='Submit'/>
+                </div>
+            </div>}
         </Formik>
-        <ButtonBlock htmlType='submit' text='Submit'/>
     </div>;
 };
 

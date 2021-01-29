@@ -39,7 +39,9 @@ export const deleteUser = (id, callback = () => {}) => dispatch => {
     deleteUserById(id)
         .then(res => {
             callback();
-            dispatch(getUsers());
+            if (res.status === 200 && res.data) {
+                dispatch(setUsers(res.data));
+            }
         }).catch(err => {
         console.log('delete user error happened', err);
     });
