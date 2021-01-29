@@ -1,5 +1,5 @@
-import {deleteUserById, getAllUsers, updateUser} from '../../requests';
-import {ACTIONS} from './types';
+import { deleteUserById, getAllUsers, updateUser } from '../../requests';
+import { ACTIONS } from './types';
 
 export const setUsers = data => ({
     type: ACTIONS.SET_USERS,
@@ -35,10 +35,11 @@ export const changeUser = (id, data) => dispatch => {
     });
 };
 
-export const deleteUser = id => dispatch => {
+export const deleteUser = (id, callback = () => {}) => dispatch => {
     deleteUserById(id)
         .then(res => {
-            dispatch(getAllUsers());
+            callback();
+            dispatch(getUsers());
         }).catch(err => {
         console.log('delete user error happened', err);
     });

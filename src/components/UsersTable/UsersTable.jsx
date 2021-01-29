@@ -1,17 +1,18 @@
-import React, {useEffect, useState} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import {Table} from 'antd';
-import {DeleteOutlined} from '@ant-design/icons';
-import {deleteUser} from '../../store/actions/actions';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Table } from 'antd';
+
+import UserNameCell from '../UserNameCell/UserNameCell';
+import DeleteCell from '../DeleteCell/DeleteCell';
 
 const UsersTable = () => {
-    const {allUsers} = useSelector(state => state);
+    const { allUsers } = useSelector(state => state);
     const [dataSource, setDataSource] = useState([]);
-    const dispatch = useDispatch();
-    
-    const deleteCurrentUser = id => {
-        dispatch(deleteUser(id));
-    };
+
+    useEffect(() => {
+        const data = allUsers.map(item => ({...item, key: item.id}));
+        setDataSource(data);
+    }, [allUsers]);
 
     const columns = [
         {
@@ -23,7 +24,7 @@ const UsersTable = () => {
             title: 'Name',
             dataIndex: 'name',
             key: 'name',
-            render: (text, record) => <div>{text} {record.surname}</div>
+            render: (text, record) => <UserNameCell user={record}/>
         },
         {
             title: 'Description',
@@ -34,16 +35,9 @@ const UsersTable = () => {
             title: 'Delete',
             dataIndex: 'delete',
             key: 'delete',
-            render: (text, record) => <div onClick={() => deleteCurrentUser(record.id)}>
-                <DeleteOutlined style={{cursor: 'pointer'}}/>
-            </div>
+            render: (text, record) => <DeleteCell id={record.id}/>
         },
     ];
-
-    useEffect(() => {
-        const data = allUsers.map(item => ({...item, key: item.id}));
-        setDataSource(data);
-    }, [allUsers]);
 
     return <Table dataSource={dataSource} columns={columns} pagination={{pageSize: 5}}/>;
 
