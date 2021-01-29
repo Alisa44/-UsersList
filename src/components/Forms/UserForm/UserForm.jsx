@@ -1,12 +1,12 @@
 import React from 'react';
-import { Formik } from 'formik';
+import {Formik} from 'formik';
 import {Button} from 'antd';
 
 import FormItem from '../FormItem/FormItem';
-import { personValidation } from './validationScheme';
+import {personValidation} from './validationScheme';
 import styles from './UserForm.module.scss';
 
-const UserForm = ({ initialValues, isEdit, onSubmit, onCancel }) => {
+const UserForm = ({initialValues, isEdit, onSubmit, onCancel}) => {
     return <div>
         <Formik validationSchema={personValidation}
                 initialValues={initialValues}
@@ -45,6 +45,7 @@ const UserForm = ({ initialValues, isEdit, onSubmit, onCancel }) => {
                     <FormItem values={values}
                               id='description'
                               name='description'
+                              required
                               label='Description'
                               onChange={handleChange}
                               onBlur={handleBlur}
@@ -63,13 +64,16 @@ const UserForm = ({ initialValues, isEdit, onSubmit, onCancel }) => {
                               touched={touched}
                               isEdit={isEdit}/>
                 </form>
-                <div className={styles.buttonsWrapper}>
-                    <Button onClick={onCancel}
-                            children='Cancel'/>
-                    <Button onClick={handleSubmit}
-                            className={styles.button}
-                            children='Submit'/>
-                </div>
+                {isEdit
+                    ? <div className={styles.buttonsWrapper}>
+                        <Button onClick={onCancel}
+                                children='Cancel'/>
+                        <Button onClick={handleSubmit}
+                                className={styles.button}
+                                children='Submit'/>
+                    </div>
+                    : null}
+
             </div>}
         </Formik>
     </div>;

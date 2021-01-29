@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { getUsers } from '../../store/actions/actions';
 import UsersTable from '../../components/UsersTable/UsersTable';
 import styles from './Home.module.scss';
-import NewUserPopup from '../../components/NewUserPopup/NewUserPopup';
+import NewUserPopup from '../../components/Popups/NewUserPopup/NewUserPopup';
 import ButtonBlock from '../../components/ButtonBlock/ButtonBlock';
 
 const Home = () => {

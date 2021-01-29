@@ -20,7 +20,7 @@ export const createUser = data => {
 
 export const updateUser = (id, data) => {
     return axios({
-        url: `${ONE_USER}/id`,
+        url: `${ONE_USER}/${id}`,
         method: 'put',
         headers: { 'content-type': 'application/json' },
         data
@@ -31,6 +31,14 @@ export const deleteUserById = id => {
     return axios({
         url: `${ONE_USER}/${id}`,
         method: 'delete',
+        headers: { 'content-type': 'application/json' },
+    });
+};
+
+export const getUser = id => {
+    return axios({
+        url: `${ONE_USER}/${id}`,
+        method: 'get',
         headers: { 'content-type': 'application/json' },
     });
 };

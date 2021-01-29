@@ -1,8 +1,13 @@
-import {createUser, deleteUserById, getAllUsers, updateUser} from '../../requests';
-import { ACTIONS } from './types';
+import {createUser, deleteUserById, getAllUsers, getUser, updateUser} from '../../requests';
+import {ACTIONS} from './types';
 
 export const setUsers = data => ({
     type: ACTIONS.SET_USERS,
+    payload: data
+});
+
+export const setUser = data => ({
+    type: ACTIONS.SET_USER,
     payload: data
 });
 
@@ -17,7 +22,7 @@ export const getUsers = () => dispatch => {
     });
 };
 
-export const createNewUser = (data, callback)=> dispatch => {
+export const createNewUser = (data, callback) => dispatch => {
     createUser(data)
         .then(res => {
             if (res.status === 200 && res.data) {
@@ -29,16 +34,20 @@ export const createNewUser = (data, callback)=> dispatch => {
     });
 };
 
-export const changeUser = (id, data) => dispatch => {
+export const changeUser = (id, data, callback) => dispatch => {
     updateUser(id, data)
         .then(res => {
-
+            if (res.status === 200 && res.data) {
+                dispatch(setUser(res.data));
+                callback();
+            }
         }).catch(err => {
         console.log('update user error happened', err);
     });
 };
 
-export const deleteUser = (id, callback = () => {}) => dispatch => {
+export const deleteUser = (id, callback = () => {
+}) => dispatch => {
     deleteUserById(id)
         .then(res => {
             callback();
@@ -47,5 +56,14 @@ export const deleteUser = (id, callback = () => {}) => dispatch => {
             }
         }).catch(err => {
         console.log('delete user error happened', err);
+    });
+};
+
+export const getUserById = id => dispatch => {
+    getUser(id)
+        .then(res => {
+            if (res.data && res.status === 200) dispatch(setUser(res.data));
+        }).catch(err => {
+        console.log('get user by id error happened', err);
     });
 };

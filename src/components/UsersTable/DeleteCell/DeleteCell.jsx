@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { DeleteOutlined } from '@ant-design/icons';
 import { notification}  from 'antd';
 
-import { deleteUser } from '../../store/actions/actions';
+import { deleteUser } from '../../../store/actions/actions';
 
 const DeleteCell = ({ id }) => {
     const dispatch = useDispatch();

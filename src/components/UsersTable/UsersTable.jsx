@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Table } from 'antd';
+import React, {useEffect, useState} from 'react';
+import {useSelector} from 'react-redux';
+import {Table} from 'antd';
 
-import UserNameCell from '../UserNameCell/UserNameCell';
-import DeleteCell from '../DeleteCell/DeleteCell';
+import UserNameCell from './UserNameCell/UserNameCell';
+import DeleteCell from './DeleteCell/DeleteCell';
 
 const UsersTable = () => {
-    const { allUsers } = useSelector(state => state);
+    const { users } = useSelector(state => state.allUsers);
     const [dataSource, setDataSource] = useState([]);
 
     useEffect(() => {
-        const data = allUsers.map(item => ({...item, key: item.id}));
-        setDataSource(data);
-    }, [allUsers]);
+        if (users?.length) {
+            const data = users.map(item => ({...item, key: item.id}));
+            setDataSource(data);
+        }
+    }, [users]);
 
     const columns = [
         {

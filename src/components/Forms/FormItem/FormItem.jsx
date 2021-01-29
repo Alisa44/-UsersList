@@ -17,7 +17,7 @@ const FormItem = ({ values, onChange, onBlur, touched, errors, isEdit, id, place
                        className={errors[id] && touched[id] ? styles.errorInput : styles.input}/>
                 { errors[id] && touched[id] ? <span className={styles.error}>{errors[id]}</span> : null }
             </div>
-            : <div>{values[id]}</div>}
+            : <div className={styles.value}>{values[id]}</div>}
     </div>;
 };
 

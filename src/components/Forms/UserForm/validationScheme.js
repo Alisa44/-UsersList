@@ -4,13 +4,15 @@ export const personValidation = Yup.object().shape({
     firstName: Yup.string()
         .typeError('Name should be string')
         .trim()
-        .required('Name is required'),
+        .required('Name required'),
     lastName: Yup.string()
         .typeError('Last name should be string')
         .trim()
-        .required('Last name is required'),
+        .required('Last name required'),
     description: Yup.string()
-        .trim(),
+        .typeError('Description should be string')
+        .trim()
+        .required('Description required'),
     avatarLink: Yup.string()
         .trim()
 });
