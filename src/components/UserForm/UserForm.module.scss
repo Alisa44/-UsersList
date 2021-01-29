@@ -1,0 +1,5 @@
+@import '../ButtonsBlock/ButtonBlock.module';
+
+.button {
+  @include button;
+}

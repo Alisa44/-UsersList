@@ -1,0 +1,16 @@
+@mixin button {
+  color: #ffffff !important;
+  background-color: #0070B9 !important;
+  border: 1px solid #0070B9 !important;
+  border-radius: 4px !important;
+}
+
+.button {
+  @include button;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 24px;
+}

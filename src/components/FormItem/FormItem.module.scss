@@ -1,0 +1,43 @@
+@mixin formInput {
+  height: 2.1rem !important;
+  padding: 5px 15px !important;
+  border-radius: 6px !important;
+  box-sizing: border-box !important;
+  font-size: 14px !important;
+  width: 100%;
+
+  &:hover {
+    box-shadow: none !important;
+    outline: none !important;
+  }
+  &:focus,
+  &:focus-within {
+    box-shadow: 0 0 4px rgba(3, 143, 222, 0.5) !important;
+    outline: none !important;
+  }
+}
+
+.error {
+  color: #F54819;
+  text-align: center;
+}
+
+.errorInput {
+  @include formInput;
+  border: 1px solid #F54819 !important;
+  &:focus,
+  &:focus-within {
+    box-shadow: 0 0 4px #F54819 !important;
+  }
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+.input {
+  @include formInput;
+}
+
+.inputWrapper {
+  margin-bottom: 20px;
+}
