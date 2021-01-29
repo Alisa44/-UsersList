@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import UserForm from '../Forms/UserForm/UserForm';
 import EditButtons from '../EditButtons/EditButtons';
-import {changeUser, setUser} from '../../store/actions/actions';
+import { changeUser, setUser } from '../../store/actions/actions';
 import styles from './UserCard.module.scss';
 
 const UserCard = () => {

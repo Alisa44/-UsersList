@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
-import {useParams} from 'react-router-dom';
-import styles from './User.module.scss';
-import {useDispatch} from 'react-redux';
-import {getUserById} from '../../store/actions/actions';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+
 import UserCard from '../../components/UserCard/UserCard';
+import { getUserById } from '../../store/actions/actions';
+import styles from './User.module.scss';
 
 const User = () => {
     const {id} = useParams();

@@ -1,8 +1,9 @@
-import React, {useCallback} from 'react';
+import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { Modal } from 'antd';
+
 import UserForm from '../../Forms/UserForm/UserForm';
-import {Modal} from 'antd';
-import {useDispatch} from 'react-redux';
-import {createNewUser} from '../../../store/actions/actions';
+import { createNewUser } from '../../../store/actions/actions';
 
 const NewUserPopup = ({ isOpen, handleCancel }) => {
     const dispatch = useDispatch();
